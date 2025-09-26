@@ -304,7 +304,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			//TODO
 			HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
 			HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
-			minute_flag = (minute_flag + 1) % 4;
+			minute_flag = (minute_flag + 1) % 2;
 		}
 	}
 }
