@@ -301,13 +301,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		}
 		if(counter <= 0){
 			counter = 100;
-			if(minute_flag >= 1){
-				minute_flag = 0;
-			}
 			//TODO
 			HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
 			HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
-			minute_flag++;
+			minute_flag = (minute_flag + 1) % 4;
 		}
 	}
 }
