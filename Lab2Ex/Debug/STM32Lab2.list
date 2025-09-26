@@ -585,13 +585,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  800041e:	2120      	movs	r1, #32
  8000420:	480a      	ldr	r0, [pc, #40]	; (800044c <HAL_TIM_PeriodElapsedCallback+0x78>)
  8000422:	f000 fbd1 	bl	8000bc8 <HAL_GPIO_TogglePin>
-			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
- 8000426:	2201      	movs	r2, #1
+			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_RESET);
+ 8000426:	2200      	movs	r2, #0
  8000428:	2140      	movs	r1, #64	; 0x40
  800042a:	4808      	ldr	r0, [pc, #32]	; (800044c <HAL_TIM_PeriodElapsedCallback+0x78>)
  800042c:	f000 fbb4 	bl	8000b98 <HAL_GPIO_WritePin>
-			HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_RESET);
- 8000430:	2200      	movs	r2, #0
+			HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_SET);
+ 8000430:	2201      	movs	r2, #1
  8000432:	2180      	movs	r1, #128	; 0x80
  8000434:	4805      	ldr	r0, [pc, #20]	; (800044c <HAL_TIM_PeriodElapsedCallback+0x78>)
  8000436:	f000 fbaf 	bl	8000b98 <HAL_GPIO_WritePin>
