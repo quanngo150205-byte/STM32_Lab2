@@ -36,7 +36,30 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+	void display7SEG(int num){
+		switch(num){
+		case 1:
+			HAL_GPIO_WritePin(GPIOB, A_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, B_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, C_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, D_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, E_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, F_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, G_Pin, GPIO_PIN_SET);
+			break;
+		case 2:
+			HAL_GPIO_WritePin(GPIOB, A_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, B_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, C_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, D_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, E_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, F_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, G_Pin, GPIO_PIN_RESET);
+			break;
+		default :
+			break;
+		}
+	}
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
