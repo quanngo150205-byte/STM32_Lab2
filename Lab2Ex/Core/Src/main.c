@@ -247,22 +247,25 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 int counter = 100;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	if(counter > 0){
-		counter--;
-		if(counter <= 50){
-			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_RESET);
-			display7SEG(2);
-		}
-		if(counter <= 0){
-			counter = 100;
-			//TODO
-			HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
-			HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_RESET);
-			display7SEG(1);
-		}
-	}
+    counter--;
+
+    if(counter > 50){
+        // 0 → 0.5s: LED 1 hiển thị số 1
+        HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_RESET); // LED 1 bật
+        HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_SET);   // LED 2 tắt
+        display7SEG(1); // số 1
+    }
+    else if(counter > 0){
+        // 0.5 → 1s: LED 2 hiển thị số 2
+        HAL_GPIO_WritePin(GPIOA, EN0_Pin, GPIO_PIN_SET);   // LED 1 tắt
+        HAL_GPIO_WritePin(GPIOA, EN1_Pin, GPIO_PIN_RESET); // LED 2 bật
+        display7SEG(2); // số 2
+    }
+    else{
+        // Reset counter để lặp lại chu trình
+        counter = 100;
+        HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin); // LED nhấp nháy mỗi giây
+    }
 }
 /* USER CODE END 4 */
 
