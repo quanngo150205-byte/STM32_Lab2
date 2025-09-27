@@ -396,10 +396,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(counter > 0){
 		counter--;
 		if(counter == 100){
-			display7SEG(index_led++);
+			update7SEG(index_led++);
 		}
 		if(counter == 50){
-			display7SEG(index_led++);
+			update7SEG(index_led++);
 		}
 		if(counter <= 0){
 			counter = 100;
