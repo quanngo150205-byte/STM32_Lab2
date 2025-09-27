@@ -395,10 +395,10 @@ int counter = 100;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(counter > 0){
 		counter--;
-		if(counter == 100){
+		if(counter == 99){
 			update7SEG(index_led++);
 		}
-		if(counter == 50){
+		if(counter == 49){
 			update7SEG(index_led++);
 		}
 		if(counter <= 0){
