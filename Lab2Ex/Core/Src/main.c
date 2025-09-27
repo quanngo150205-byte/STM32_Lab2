@@ -28,6 +28,10 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+int hour = 15, minute = 8, second = 50;
+const int MAX_LED = 4;
+int index_led = 0;
+int led_buffer[4] = {1, 2, 3, 4};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -42,10 +46,6 @@
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
 
-const int MAX_LED = 4;
-int index_led = 0;
-int hour = 15, minute = 8, second = 55;
-int led_buffer[4] = {1, 2, 3, 4};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -368,24 +368,18 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_BLINK_Pin|EN1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_BLINK_Pin|EN0_Pin|EN1_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
+                          |E_Pin|F_Pin|G_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : LED_BLINK_Pin EN1_Pin */
-  GPIO_InitStruct.Pin = LED_BLINK_Pin|EN1_Pin;
+  /*Configure GPIO pins : LED_BLINK_Pin EN0_Pin EN1_Pin */
+  GPIO_InitStruct.Pin = LED_BLINK_Pin|EN0_Pin|EN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : EN0_Pin */
-  GPIO_InitStruct.Pin = EN0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(EN0_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : A_Pin B_Pin C_Pin D_Pin
                            E_Pin F_Pin G_Pin */
