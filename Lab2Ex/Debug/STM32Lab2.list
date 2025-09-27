@@ -1040,19 +1040,19 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, DOT_Pin|LED_BLINK_Pin|EN0_Pin|EN1_Pin
- 80007cc:	2200      	movs	r2, #0
+ 80007cc:	2201      	movs	r2, #1
  80007ce:	f44f 717c 	mov.w	r1, #1008	; 0x3f0
  80007d2:	481b      	ldr	r0, [pc, #108]	; (8000840 <MX_GPIO_Init+0xb8>)
  80007d4:	f000 fc3c 	bl	8001050 <HAL_GPIO_WritePin>
-                          |EN2_Pin|EN3_Pin, GPIO_PIN_RESET);
+                          |EN2_Pin|EN3_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, A_Pin|C_Pin|D_Pin|E_Pin
- 80007d8:	2200      	movs	r2, #0
+ 80007d8:	2201      	movs	r2, #1
  80007da:	217d      	movs	r1, #125	; 0x7d
  80007dc:	4819      	ldr	r0, [pc, #100]	; (8000844 <MX_GPIO_Init+0xbc>)
  80007de:	f000 fc37 	bl	8001050 <HAL_GPIO_WritePin>
-                          |F_Pin|G_Pin, GPIO_PIN_RESET);
+                          |F_Pin|G_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : DOT_Pin LED_BLINK_Pin EN0_Pin EN1_Pin
                            EN2_Pin EN3_Pin */
