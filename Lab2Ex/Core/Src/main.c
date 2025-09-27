@@ -28,10 +28,6 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-int hour = 15, minute = 8, second = 50;
-const int MAX_LED = 4;
-int index_led = 0;
-int led_buffer[4] = {1, 2, 3, 4};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -46,6 +42,10 @@ int led_buffer[4] = {1, 2, 3, 4};
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
 
+int hour = 15, minute = 8, second = 55;
+const int MAX_LED = 4;
+int index_led = 0;
+int led_buffer[4] = {1, 2, 3, 4};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
