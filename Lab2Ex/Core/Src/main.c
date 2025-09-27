@@ -398,7 +398,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		if(counter == 99){
 			update7SEG(index_led++);
 		}
+		if(counter == 74){
+			update7SEG(index_led++);
+		}
 		if(counter == 49){
+			update7SEG(index_led++);
+		}
+		if(counter == 24){
 			update7SEG(index_led++);
 		}
 		if(counter <= 0){
