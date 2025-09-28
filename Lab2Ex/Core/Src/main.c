@@ -48,6 +48,9 @@ int index_led = 0;
 const int MAX_LED = 4;
 int  led_buffer[4] = {1,2,3,4};
 
+const int MAX_LED_MATRIX = 8;
+int index_led_matrix = 0;
+uint8_t matrix_buffer[8] = { 0x7E, 0x81, 0x81, 0x81, 0xFF, 0x81, 0x81, 0x81 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -245,6 +248,51 @@ void update7SEG(int index){
 		break;
 	}
 }
+
+void updateLEDMatrix(int index){
+    // Tắt tất cả cột trước
+    HAL_GPIO_WritePin(GPIOA, ENM0_Pin|ENM1_Pin|ENM2_Pin|ENM3_Pin|
+                             ENM4_Pin|ENM5_Pin|ENM6_Pin|ENM7_Pin, GPIO_PIN_SET);
+
+    // Cột thứ nhất trong cặp
+    uint8_t data1 = matrix_buffer[index * 2];
+    // Cột thứ hai trong cặp
+    uint8_t data2 = matrix_buffer[index * 2 + 1];
+
+    // OR dữ liệu của 2 cột lại → vì cùng lúc hàng nào sáng thì phải bật LED ở cả 2 cột
+    uint8_t combined = data1 | data2;
+
+    // Xuất dữ liệu hàng
+    HAL_GPIO_WritePin(GPIOB, ROW_0_Pin, (combined & 0x01) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_1_Pin, (combined & 0x02) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_2_Pin, (combined & 0x04) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_3_Pin, (combined & 0x08) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_4_Pin, (combined & 0x10) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_5_Pin, (combined & 0x20) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_6_Pin, (combined & 0x40) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, ROW_7_Pin, (combined & 0x80) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+
+    // Kích hoạt 2 cột cùng lúc
+    switch(index){
+      case 0: // cột 0 và 1
+        HAL_GPIO_WritePin(GPIOA, ENM0_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM1_Pin, GPIO_PIN_RESET);
+        break;
+      case 1: // cột 2 và 3
+        HAL_GPIO_WritePin(GPIOA, ENM2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM3_Pin, GPIO_PIN_RESET);
+        break;
+      case 2: // cột 4 và 5
+        HAL_GPIO_WritePin(GPIOA, ENM4_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM5_Pin, GPIO_PIN_RESET);
+        break;
+      case 3: // cột 6 và 7
+        HAL_GPIO_WritePin(GPIOA, ENM6_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM7_Pin, GPIO_PIN_RESET);
+        break;
+      default: break;
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -281,11 +329,12 @@ int main(void)
   /* USER CODE END 2 */
   setTimer0(1000);
   setTimer1(1000);
+  setTimer2(1000);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(timer0_flag == 1){
+	  if (timer0_flag == 1){
 		  second++;
 		  HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
 		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
@@ -294,10 +343,16 @@ int main(void)
 		  setTimer0(1000);
 	  }
 
-	  if(timer1_flag == 1){
+	  if (timer1_flag == 1){
 		  update7SEG(index_led++);
 		  index_led = index_led % MAX_LED;
 		  setTimer1(250);
+	  }
+
+	  if (timer2_flag == 1){
+		  updateLEDMatrix(index_led_matrix++);
+		  index_led_matrix %= 4;   // chỉ có 4 cặp (0–3)
+		  setTimer2(100);
 	  }
     /* USER CODE END WHILE */
 
