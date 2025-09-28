@@ -224,24 +224,24 @@ void setEN(int num){
 void update7SEG(int index){
 	switch(index){
 	case 0:
-		setEN(0);
 		display7SEG(led_buffer[0]);
+		setEN(0);
 		break;
 	case 1:
-		setEN(1);
 		display7SEG(led_buffer[1]);
+		setEN(1);
 		break;
 	case 2:
-		setEN(2);
 		display7SEG(led_buffer[2]);
+		setEN(2);
 		break;
 	case 3:
-		setEN(3);
 		display7SEG(led_buffer[3]);
+		setEN(3);
 		break;
 	default :
-		setEN(MAX_LED);
 		display7SEG(led_buffer[MAX_LED]);
+		setEN(MAX_LED);
 		break;
 	}
 }

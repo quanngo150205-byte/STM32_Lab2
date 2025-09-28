@@ -812,60 +812,60 @@ void update7SEG(int index){
  80006c0:	080006fb 	.word	0x080006fb
 	switch(index){
 	case 0:
-		setEN(0);
- 80006c4:	2000      	movs	r0, #0
- 80006c6:	f7ff ff5f 	bl	8000588 <setEN>
 		display7SEG(led_buffer[0]);
- 80006ca:	4b18      	ldr	r3, [pc, #96]	; (800072c <update7SEG+0x8c>)
- 80006cc:	681b      	ldr	r3, [r3, #0]
- 80006ce:	4618      	mov	r0, r3
- 80006d0:	f7ff fda8 	bl	8000224 <display7SEG>
+ 80006c4:	4b19      	ldr	r3, [pc, #100]	; (800072c <update7SEG+0x8c>)
+ 80006c6:	681b      	ldr	r3, [r3, #0]
+ 80006c8:	4618      	mov	r0, r3
+ 80006ca:	f7ff fdab 	bl	8000224 <display7SEG>
+		setEN(0);
+ 80006ce:	2000      	movs	r0, #0
+ 80006d0:	f7ff ff5a 	bl	8000588 <setEN>
 		break;
  80006d4:	e026      	b.n	8000724 <update7SEG+0x84>
 	case 1:
-		setEN(1);
- 80006d6:	2001      	movs	r0, #1
- 80006d8:	f7ff ff56 	bl	8000588 <setEN>
 		display7SEG(led_buffer[1]);
- 80006dc:	4b13      	ldr	r3, [pc, #76]	; (800072c <update7SEG+0x8c>)
- 80006de:	685b      	ldr	r3, [r3, #4]
- 80006e0:	4618      	mov	r0, r3
- 80006e2:	f7ff fd9f 	bl	8000224 <display7SEG>
+ 80006d6:	4b15      	ldr	r3, [pc, #84]	; (800072c <update7SEG+0x8c>)
+ 80006d8:	685b      	ldr	r3, [r3, #4]
+ 80006da:	4618      	mov	r0, r3
+ 80006dc:	f7ff fda2 	bl	8000224 <display7SEG>
+		setEN(1);
+ 80006e0:	2001      	movs	r0, #1
+ 80006e2:	f7ff ff51 	bl	8000588 <setEN>
 		break;
  80006e6:	e01d      	b.n	8000724 <update7SEG+0x84>
 	case 2:
-		setEN(2);
- 80006e8:	2002      	movs	r0, #2
- 80006ea:	f7ff ff4d 	bl	8000588 <setEN>
 		display7SEG(led_buffer[2]);
- 80006ee:	4b0f      	ldr	r3, [pc, #60]	; (800072c <update7SEG+0x8c>)
- 80006f0:	689b      	ldr	r3, [r3, #8]
- 80006f2:	4618      	mov	r0, r3
- 80006f4:	f7ff fd96 	bl	8000224 <display7SEG>
+ 80006e8:	4b10      	ldr	r3, [pc, #64]	; (800072c <update7SEG+0x8c>)
+ 80006ea:	689b      	ldr	r3, [r3, #8]
+ 80006ec:	4618      	mov	r0, r3
+ 80006ee:	f7ff fd99 	bl	8000224 <display7SEG>
+		setEN(2);
+ 80006f2:	2002      	movs	r0, #2
+ 80006f4:	f7ff ff48 	bl	8000588 <setEN>
 		break;
  80006f8:	e014      	b.n	8000724 <update7SEG+0x84>
 	case 3:
-		setEN(3);
- 80006fa:	2003      	movs	r0, #3
- 80006fc:	f7ff ff44 	bl	8000588 <setEN>
 		display7SEG(led_buffer[3]);
- 8000700:	4b0a      	ldr	r3, [pc, #40]	; (800072c <update7SEG+0x8c>)
- 8000702:	68db      	ldr	r3, [r3, #12]
- 8000704:	4618      	mov	r0, r3
- 8000706:	f7ff fd8d 	bl	8000224 <display7SEG>
+ 80006fa:	4b0c      	ldr	r3, [pc, #48]	; (800072c <update7SEG+0x8c>)
+ 80006fc:	68db      	ldr	r3, [r3, #12]
+ 80006fe:	4618      	mov	r0, r3
+ 8000700:	f7ff fd90 	bl	8000224 <display7SEG>
+		setEN(3);
+ 8000704:	2003      	movs	r0, #3
+ 8000706:	f7ff ff3f 	bl	8000588 <setEN>
 		break;
  800070a:	e00b      	b.n	8000724 <update7SEG+0x84>
 	default :
-		setEN(MAX_LED);
- 800070c:	2304      	movs	r3, #4
- 800070e:	4618      	mov	r0, r3
- 8000710:	f7ff ff3a 	bl	8000588 <setEN>
 		display7SEG(led_buffer[MAX_LED]);
- 8000714:	2204      	movs	r2, #4
- 8000716:	4b05      	ldr	r3, [pc, #20]	; (800072c <update7SEG+0x8c>)
- 8000718:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
+ 800070c:	2204      	movs	r2, #4
+ 800070e:	4b07      	ldr	r3, [pc, #28]	; (800072c <update7SEG+0x8c>)
+ 8000710:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
+ 8000714:	4618      	mov	r0, r3
+ 8000716:	f7ff fd85 	bl	8000224 <display7SEG>
+		setEN(MAX_LED);
+ 800071a:	2304      	movs	r3, #4
  800071c:	4618      	mov	r0, r3
- 800071e:	f7ff fd81 	bl	8000224 <display7SEG>
+ 800071e:	f7ff ff33 	bl	8000588 <setEN>
 		break;
  8000722:	bf00      	nop
 	}
