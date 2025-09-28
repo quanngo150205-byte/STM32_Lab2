@@ -297,7 +297,7 @@ int main(void)
 	  if(timer1_flag == 1){
 		  update7SEG(index_led++);
 		  index_led = index_led % MAX_LED;
-		  setTimer1(50);
+		  setTimer1(250);
 	  }
     /* USER CODE END WHILE */
 
