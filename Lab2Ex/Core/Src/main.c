@@ -287,17 +287,17 @@ int main(void)
   {
 	  if(timer0_flag == 1){
 		  second++;
-		  setTimer0(1000);
 		  HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
 		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
 		  updateClockTime();
 		  updateClockBuffer();
+		  setTimer0(1000);
 	  }
 
 	  if(timer1_flag == 1){
-		  setTimer1(50);
 		  update7SEG(index_led++);
 		  index_led = index_led % MAX_LED;
+		  setTimer1(50);
 	  }
     /* USER CODE END WHILE */
 

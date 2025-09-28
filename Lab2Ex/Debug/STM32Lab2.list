@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00016387  00000000  00000000  0002af70  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00009522  00000000  00000000  000412f7  2**0
+ 17 .debug_line   00009524  00000000  00000000  000412f7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000822d5  00000000  00000000  0004a819  2**0
+ 18 .debug_str    000822d5  00000000  00000000  0004a81b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000ccaee  2**0
+ 19 .comment      00000053  00000000  00000000  000ccaf0  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000026f4  00000000  00000000  000ccb44  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -934,21 +934,21 @@ int main(void)
  8000766:	3301      	adds	r3, #1
  8000768:	4a17      	ldr	r2, [pc, #92]	; (80007c8 <main+0x98>)
  800076a:	6013      	str	r3, [r2, #0]
-		  setTimer0(1000);
- 800076c:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 8000770:	f000 f920 	bl	80009b4 <setTimer0>
 		  HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
- 8000774:	2120      	movs	r1, #32
+ 800076c:	2120      	movs	r1, #32
+ 800076e:	4817      	ldr	r0, [pc, #92]	; (80007cc <main+0x9c>)
+ 8000770:	f000 fd38 	bl	80011e4 <HAL_GPIO_TogglePin>
+		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
+ 8000774:	2110      	movs	r1, #16
  8000776:	4815      	ldr	r0, [pc, #84]	; (80007cc <main+0x9c>)
  8000778:	f000 fd34 	bl	80011e4 <HAL_GPIO_TogglePin>
-		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
- 800077c:	2110      	movs	r1, #16
- 800077e:	4813      	ldr	r0, [pc, #76]	; (80007cc <main+0x9c>)
- 8000780:	f000 fd30 	bl	80011e4 <HAL_GPIO_TogglePin>
 		  updateClockTime();
- 8000784:	f7ff fd22 	bl	80001cc <updateClockTime>
+ 800077c:	f7ff fd26 	bl	80001cc <updateClockTime>
 		  updateClockBuffer();
- 8000788:	f7ff fce0 	bl	800014c <updateClockBuffer>
+ 8000780:	f7ff fce4 	bl	800014c <updateClockBuffer>
+		  setTimer0(1000);
+ 8000784:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 8000788:	f000 f914 	bl	80009b4 <setTimer0>
 	  }
 
 	  if(timer1_flag == 1){
@@ -956,26 +956,26 @@ int main(void)
  800078e:	681b      	ldr	r3, [r3, #0]
  8000790:	2b01      	cmp	r3, #1
  8000792:	d1e2      	bne.n	800075a <main+0x2a>
-		  setTimer1(50);
- 8000794:	2032      	movs	r0, #50	; 0x32
- 8000796:	f000 f927 	bl	80009e8 <setTimer1>
 		  update7SEG(index_led++);
- 800079a:	4b0e      	ldr	r3, [pc, #56]	; (80007d4 <main+0xa4>)
- 800079c:	681b      	ldr	r3, [r3, #0]
- 800079e:	1c5a      	adds	r2, r3, #1
- 80007a0:	490c      	ldr	r1, [pc, #48]	; (80007d4 <main+0xa4>)
- 80007a2:	600a      	str	r2, [r1, #0]
- 80007a4:	4618      	mov	r0, r3
- 80007a6:	f7ff ff7b 	bl	80006a0 <update7SEG>
+ 8000794:	4b0f      	ldr	r3, [pc, #60]	; (80007d4 <main+0xa4>)
+ 8000796:	681b      	ldr	r3, [r3, #0]
+ 8000798:	1c5a      	adds	r2, r3, #1
+ 800079a:	490e      	ldr	r1, [pc, #56]	; (80007d4 <main+0xa4>)
+ 800079c:	600a      	str	r2, [r1, #0]
+ 800079e:	4618      	mov	r0, r3
+ 80007a0:	f7ff ff7e 	bl	80006a0 <update7SEG>
 		  index_led = index_led % MAX_LED;
- 80007aa:	4b0a      	ldr	r3, [pc, #40]	; (80007d4 <main+0xa4>)
- 80007ac:	681b      	ldr	r3, [r3, #0]
- 80007ae:	2204      	movs	r2, #4
- 80007b0:	fb93 f1f2 	sdiv	r1, r3, r2
- 80007b4:	fb02 f201 	mul.w	r2, r2, r1
- 80007b8:	1a9b      	subs	r3, r3, r2
- 80007ba:	4a06      	ldr	r2, [pc, #24]	; (80007d4 <main+0xa4>)
- 80007bc:	6013      	str	r3, [r2, #0]
+ 80007a4:	4b0b      	ldr	r3, [pc, #44]	; (80007d4 <main+0xa4>)
+ 80007a6:	681b      	ldr	r3, [r3, #0]
+ 80007a8:	2204      	movs	r2, #4
+ 80007aa:	fb93 f1f2 	sdiv	r1, r3, r2
+ 80007ae:	fb02 f201 	mul.w	r2, r2, r1
+ 80007b2:	1a9b      	subs	r3, r3, r2
+ 80007b4:	4a07      	ldr	r2, [pc, #28]	; (80007d4 <main+0xa4>)
+ 80007b6:	6013      	str	r3, [r2, #0]
+		  setTimer1(50);
+ 80007b8:	2032      	movs	r0, #50	; 0x32
+ 80007ba:	f000 f915 	bl	80009e8 <setTimer1>
 	  if(timer0_flag == 1){
  80007be:	e7cc      	b.n	800075a <main+0x2a>
  80007c0:	2000005c 	.word	0x2000005c
