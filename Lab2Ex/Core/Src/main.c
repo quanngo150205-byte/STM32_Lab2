@@ -221,7 +221,7 @@ void update7SEG(int index){
 		display7SEG(led_buffer[2]);
 		break;
 	case 3:
-		setEN(4);
+		setEN(3);
 		display7SEG(led_buffer[3]);
 		break;
 	default :

@@ -788,8 +788,8 @@ void update7SEG(int index){
 		break;
  80006a0:	e014      	b.n	80006cc <update7SEG+0x84>
 	case 3:
-		setEN(4);
- 80006a2:	2004      	movs	r0, #4
+		setEN(3);
+ 80006a2:	2003      	movs	r0, #3
  80006a4:	f7ff ff44 	bl	8000530 <setEN>
 		display7SEG(led_buffer[3]);
  80006a8:	4b0a      	ldr	r3, [pc, #40]	; (80006d4 <update7SEG+0x8c>)
