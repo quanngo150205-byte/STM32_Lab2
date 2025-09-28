@@ -351,8 +351,8 @@ int main(void)
 
 	  if (timer2_flag == 1){
 		  updateLEDMatrix(index_led_matrix++);
-		  index_led_matrix %= 4;   // chỉ có 4 cặp (0–3)
-		  setTimer2(100);
+		  index_led_matrix %= 4;
+		  setTimer2(250);
 	  }
     /* USER CODE END WHILE */
 

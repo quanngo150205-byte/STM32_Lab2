@@ -1205,7 +1205,7 @@ int main(void)
  800097e:	600a      	str	r2, [r1, #0]
  8000980:	4618      	mov	r0, r3
  8000982:	f7ff fed5 	bl	8000730 <updateLEDMatrix>
-		  index_led_matrix %= 4;   // chỉ có 4 cặp (0–3)
+		  index_led_matrix %= 4;
  8000986:	4b0e      	ldr	r3, [pc, #56]	; (80009c0 <main+0xe8>)
  8000988:	681b      	ldr	r3, [r3, #0]
  800098a:	425a      	negs	r2, r3
@@ -1215,8 +1215,8 @@ int main(void)
  8000996:	4253      	negpl	r3, r2
  8000998:	4a09      	ldr	r2, [pc, #36]	; (80009c0 <main+0xe8>)
  800099a:	6013      	str	r3, [r2, #0]
-		  setTimer2(100);
- 800099c:	2064      	movs	r0, #100	; 0x64
+		  setTimer2(250);
+ 800099c:	20fa      	movs	r0, #250	; 0xfa
  800099e:	f000 f933 	bl	8000c08 <setTimer2>
 	  if (timer0_flag == 1){
  80009a2:	e7b2      	b.n	800090a <main+0x32>
