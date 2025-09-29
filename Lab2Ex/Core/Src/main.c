@@ -274,23 +274,40 @@ void updateLEDMatrix(int index){
 
     // Kích hoạt 2 cột cùng lúc
     switch(index){
-      case 0: // cột 0 và 1
+      case 0:
         HAL_GPIO_WritePin(GPIOA, ENM0_Pin, GPIO_PIN_RESET);
+        break;
+      case 1:
         HAL_GPIO_WritePin(GPIOA, ENM1_Pin, GPIO_PIN_RESET);
         break;
-      case 1: // cột 2 và 3
+      case 2:
         HAL_GPIO_WritePin(GPIOA, ENM2_Pin, GPIO_PIN_RESET);
+        break;
+      case 3:
         HAL_GPIO_WritePin(GPIOA, ENM3_Pin, GPIO_PIN_RESET);
         break;
-      case 2: // cột 4 và 5
+      case 4:
         HAL_GPIO_WritePin(GPIOA, ENM4_Pin, GPIO_PIN_RESET);
+        break;
+      case 5:
         HAL_GPIO_WritePin(GPIOA, ENM5_Pin, GPIO_PIN_RESET);
         break;
-      case 3: // cột 6 và 7
+      case 6:
         HAL_GPIO_WritePin(GPIOA, ENM6_Pin, GPIO_PIN_RESET);
+        break;
+      case 7:
         HAL_GPIO_WritePin(GPIOA, ENM7_Pin, GPIO_PIN_RESET);
         break;
-      default: break;
+      default :
+        HAL_GPIO_WritePin(GPIOA, ENM0_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM1_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM2_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM3_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM4_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM5_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM6_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, ENM7_Pin, GPIO_PIN_RESET);
+    	break;
     }
 }
 /* USER CODE END 0 */
