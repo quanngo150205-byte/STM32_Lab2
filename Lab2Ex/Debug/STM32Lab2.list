@@ -1230,8 +1230,8 @@ int main(void)
  80009b2:	4253      	negpl	r3, r2
  80009b4:	4a09      	ldr	r2, [pc, #36]	; (80009dc <main+0xe8>)
  80009b6:	6013      	str	r3, [r2, #0]
-		  setTimer2(250);
- 80009b8:	20fa      	movs	r0, #250	; 0xfa
+		  setTimer2(50);
+ 80009b8:	2032      	movs	r0, #50	; 0x32
  80009ba:	f000 f933 	bl	8000c24 <setTimer2>
 	  if (timer0_flag == 1){
  80009be:	e7b2      	b.n	8000926 <main+0x32>

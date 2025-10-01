@@ -363,7 +363,7 @@ int main(void)
 	  if (timer2_flag == 1){
 		  updateLEDMatrix(index_led_matrix++);
 		  index_led_matrix %= 8;
-		  setTimer2(250);
+		  setTimer2(50);
 	  }
     /* USER CODE END WHILE */
 
