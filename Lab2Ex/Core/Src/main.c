@@ -381,7 +381,7 @@ int main(void)
 		  setTimer(2,20);
 	  }
 
-	  if (timer_flag[3] ==1){
+	  if (timer_flag[3] == 1){
 		  shiftleftMatrixBuffer();
 		  setTimer(3,160);
 	  }
