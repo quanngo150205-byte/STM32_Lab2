@@ -49,8 +49,9 @@ const int MAX_LED = 4;
 int  led_buffer[4] = {1,2,3,4};
 
 const int MAX_LED_MATRIX = 8;
+const int SIZEOF_MATRIX_BUFFER = 12;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = { 0x18, 0x24, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42 };
+uint8_t matrix_buffer[12] = { 0x18, 0x24, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42, 0x00, 0x00, 0x00, 0x00 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -314,10 +315,10 @@ void updateLEDMatrix(int index){
 
 void shiftleftMatrixBuffer(){
 	uint8_t  first = matrix_buffer[0];
-	for (int i = 0; i < MAX_LED_MATRIX - 1; ++i){\
+	for (int i = 0; i < SIZEOF_MATRIX_BUFFER - 1; ++i){
 		matrix_buffer[i] = matrix_buffer[i+1];
 	}
-	matrix_buffer[MAX_LED_MATRIX - 1] = first;
+	matrix_buffer[SIZEOF_MATRIX_BUFFER - 1] = first;
 }
 
 /* USER CODE END 0 */
