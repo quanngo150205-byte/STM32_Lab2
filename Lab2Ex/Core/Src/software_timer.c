@@ -7,60 +7,48 @@
 
 #include "software_timer.h"
 
-int timer0_counter = 0;
-int timer0_flag = 0;
-int timer1_counter = 0;
-int timer1_flag = 0;
-int timer2_counter = 0;
-int timer2_flag = 0;
-int timer3_counter = 0;
-int timer3_flag = 0;
+const int TIMER_SIZE = 4;
+int timer_counter[4] = {0, 0, 0, 0};
+int timer_flag[4] = {0, 0, 0, 0};
 int TIMER_CYCLE = 10;
 
-void setTimer0(int duration){
-    timer0_counter = duration / TIMER_CYCLE;
-    timer0_flag = 0;
+void setTimers(int duration){
+	for(int i = 0; i < TIMER_SIZE - 1; ++i){
+		timer_counter[i] = timer_counter[i] / TIMER_CYCLE;
+		timer_flag[i] = 0;
+	}
 }
 
-void setTimer1(int duration){
-	timer1_counter = duration  / TIMER_CYCLE;
-	timer1_flag = 0;
+void setTimer(int index, int duration){
+	switch (index){
+	case 0:
+		timer_counter[0] = timer_counter[0] / TIMER_CYCLE;
+		timer_flag[0] = 0;
+		break;
+	case 1:
+		timer_counter[1] = timer_counter[1] / TIMER_CYCLE;
+		timer_flag[1] = 0;
+		break;
+	case 2:
+		timer_counter[2] = timer_counter[2] / TIMER_CYCLE;
+		timer_flag[2] = 0;
+		break;
+	case 3:
+		timer_counter[3] = timer_counter[3] / TIMER_CYCLE;
+		timer_flag[3] = 0;
+		break;
+	default :
+		break;
+	}
 }
-
-void setTimer2(int duration){
-	timer2_counter = duration  / TIMER_CYCLE;
-	timer2_flag = 0;
-}
-
-void setTimer3(int duration){
-	timer3_counter = duration  / TIMER_CYCLE;
-	timer3_flag = 0;
-}
-
 
 void timer_run(){
-    if (timer0_counter > 0) {
-        timer0_counter--;
-        if (timer0_counter <= 0) {
-            timer0_flag = 1;
-        }
-    }
-    if (timer1_counter > 0){
-    	timer1_counter--;
-    	if (timer1_counter <= 0){
-    		timer1_flag = 1;
-    	}
-    }
-    if (timer2_counter > 0){
-    	timer2_counter--;
-    	if (timer2_counter <= 0){
-    		timer2_flag = 1;
-    	}
-    }
-    if (timer3_counter > 0){
-    	timer3_counter--;
-    	if(timer3_counter <=0){
-    		timer3_flag = 1;
-    	}
-    }
+	for (int i = 0; i < TIMER_SIZE; ++i){
+	    if (timer_counter[i] > 0) {
+	        timer_counter[i]--;
+	        if (timer_counter[i] <= 0) {
+	            timer_flag[i] = 1;
+	        }
+	    }
+	}
 }

@@ -355,38 +355,35 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
-  setTimer0(1000);
-  setTimer1(1000);
-  setTimer2(1000);
-  setTimer3(1000);
+  setTimers(1000);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (timer0_flag == 1){
+	  if (timer_flag[0] == 1){
 		  second++;
 		  HAL_GPIO_TogglePin(GPIOA, LED_BLINK_Pin);
 		  HAL_GPIO_TogglePin(GPIOA, DOT_Pin);
 		  updateClockTime();
 		  updateClockBuffer();
-		  setTimer0(1000);
+		  setTimer(0,1000);
 	  }
 
-	  if (timer1_flag == 1){
+	  if (timer_flag[1] == 1){
 		  update7SEG(index_led++);
 		  index_led = index_led % MAX_LED;
-		  setTimer1(250);
+		  setTimer(1,250);
 	  }
 
-	  if (timer2_flag == 1){
+	  if (timer_flag[2] == 1){
 		  updateLEDMatrix(index_led_matrix++);
 		  index_led_matrix %= 8;
-		  setTimer2(20);
+		  setTimer(2,20);
 	  }
 
-	  if (timer3_flag ==1){
+	  if (timer_flag[3] ==1){
 		  shiftleftMatrixBuffer();
-		  setTimer3(160);
+		  setTimer(3,160);
 	  }
     /* USER CODE END WHILE */
 
