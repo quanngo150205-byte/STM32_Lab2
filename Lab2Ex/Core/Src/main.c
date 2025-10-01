@@ -50,7 +50,7 @@ int  led_buffer[4] = {1,2,3,4};
 
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = { 0x18, 0x24, 0x42, 0x7E, 0x42, 0x42, 0x42, 0x00 };
+uint8_t matrix_buffer[8] = { 0x18, 0x24, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
