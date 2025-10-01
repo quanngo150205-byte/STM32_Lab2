@@ -50,7 +50,7 @@ int  led_buffer[4] = {1,2,3,4};
 
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = { 0x7E, 0x81, 0x81, 0x81, 0xFF, 0x81, 0x81, 0x81 };
+uint8_t matrix_buffer[8] = { 0x00, 0x18, 0x24, 0x7E, 0x42, 0x42, 0x42, 0x00 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -249,67 +249,61 @@ void update7SEG(int index){
 	}
 }
 
+void displayLEDMatrix(int index){
+	uint8_t value = matrix_buffer[index];
+	// Quét từng hàng
+	HAL_GPIO_WritePin(GPIOB, ROW_0_Pin, (value & (1<<0)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_1_Pin, (value & (1<<1)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_2_Pin, (value & (1<<2)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_3_Pin, (value & (1<<3)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_4_Pin, (value & (1<<4)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_5_Pin, (value & (1<<5)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_6_Pin, (value & (1<<6)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_7_Pin, (value & (1<<7)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
 void updateLEDMatrix(int index){
-    // Tắt tất cả cột trước
     HAL_GPIO_WritePin(GPIOA, ENM0_Pin|ENM1_Pin|ENM2_Pin|ENM3_Pin|
                              ENM4_Pin|ENM5_Pin|ENM6_Pin|ENM7_Pin, GPIO_PIN_SET);
 
-    // Cột thứ nhất trong cặp
-    uint8_t data1 = matrix_buffer[index * 2];
-    // Cột thứ hai trong cặp
-    uint8_t data2 = matrix_buffer[index * 2 + 1];
-
-    // OR dữ liệu của 2 cột lại → vì cùng lúc hàng nào sáng thì phải bật LED ở cả 2 cột
-    uint8_t combined = data1 | data2;
-
-    // Xuất dữ liệu hàng
-    HAL_GPIO_WritePin(GPIOB, ROW_0_Pin, (combined & 0x01) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_1_Pin, (combined & 0x02) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_2_Pin, (combined & 0x04) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_3_Pin, (combined & 0x08) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_4_Pin, (combined & 0x10) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_5_Pin, (combined & 0x20) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_6_Pin, (combined & 0x40) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, ROW_7_Pin, (combined & 0x80) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-
-    // Kích hoạt 2 cột cùng lúc
     switch(index){
       case 0:
         HAL_GPIO_WritePin(GPIOA, ENM0_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(0);
         break;
       case 1:
         HAL_GPIO_WritePin(GPIOA, ENM1_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(1);
         break;
       case 2:
         HAL_GPIO_WritePin(GPIOA, ENM2_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(2);
         break;
       case 3:
         HAL_GPIO_WritePin(GPIOA, ENM3_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(3);
         break;
       case 4:
         HAL_GPIO_WritePin(GPIOA, ENM4_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(4);
         break;
       case 5:
         HAL_GPIO_WritePin(GPIOA, ENM5_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(5);
         break;
       case 6:
         HAL_GPIO_WritePin(GPIOA, ENM6_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(6);
         break;
       case 7:
         HAL_GPIO_WritePin(GPIOA, ENM7_Pin, GPIO_PIN_RESET);
+        displayLEDMatrix(7);
         break;
       default :
-        HAL_GPIO_WritePin(GPIOA, ENM0_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM1_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM2_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM3_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM4_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM5_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM6_Pin, GPIO_PIN_RESET);
-        HAL_GPIO_WritePin(GPIOA, ENM7_Pin, GPIO_PIN_RESET);
     	break;
     }
 }
+
 /* USER CODE END 0 */
 
 /**
