@@ -14,7 +14,7 @@ int TIMER_CYCLE = 10;
 
 void setTimers(int duration){
 	for(int i = 0; i < TIMER_SIZE - 1; ++i){
-		timer_counter[i] = timer_counter[i] / TIMER_CYCLE;
+		timer_counter[i] = duration / TIMER_CYCLE;
 		timer_flag[i] = 0;
 	}
 }
@@ -22,19 +22,19 @@ void setTimers(int duration){
 void setTimer(int index, int duration){
 	switch (index){
 	case 0:
-		timer_counter[0] = timer_counter[0] / TIMER_CYCLE;
+		timer_counter[0] = duration / TIMER_CYCLE;
 		timer_flag[0] = 0;
 		break;
 	case 1:
-		timer_counter[1] = timer_counter[1] / TIMER_CYCLE;
+		timer_counter[1] = duration / TIMER_CYCLE;
 		timer_flag[1] = 0;
 		break;
 	case 2:
-		timer_counter[2] = timer_counter[2] / TIMER_CYCLE;
+		timer_counter[2] = duration / TIMER_CYCLE;
 		timer_flag[2] = 0;
 		break;
 	case 3:
-		timer_counter[3] = timer_counter[3] / TIMER_CYCLE;
+		timer_counter[3] = duration / TIMER_CYCLE;
 		timer_flag[3] = 0;
 		break;
 	default :
