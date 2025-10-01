@@ -252,14 +252,14 @@ void update7SEG(int index){
 void displayLEDMatrix(int index){
 	uint8_t value = matrix_buffer[index];
 	// Quét từng hàng
-	HAL_GPIO_WritePin(GPIOB, ROW_0_Pin, (value & (1<<0)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_1_Pin, (value & (1<<1)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_2_Pin, (value & (1<<2)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_3_Pin, (value & (1<<3)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_4_Pin, (value & (1<<4)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_5_Pin, (value & (1<<5)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_6_Pin, (value & (1<<6)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, ROW_7_Pin, (value & (1<<7)) ? GPIO_PIN_RESET : GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, ROW_0_Pin, (value & (1<<0)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_1_Pin, (value & (1<<1)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_2_Pin, (value & (1<<2)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_3_Pin, (value & (1<<3)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_4_Pin, (value & (1<<4)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_5_Pin, (value & (1<<5)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_6_Pin, (value & (1<<6)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, ROW_7_Pin, (value & (1<<7)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 void updateLEDMatrix(int index){
